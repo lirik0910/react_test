@@ -14,6 +14,7 @@ export class Game extends React.PureComponent {
             xIsNext: true,
             sortDesc: false,
             winCombination: null,
+            winner: null,
         };
     }
 
@@ -60,16 +61,18 @@ export class Game extends React.PureComponent {
         if (!squares) return;
 
         let winCombination = null;
+        let winner = null;
 
         for (let i = 0; i < combinations.length; i++) {
             const [a, b, c] = combinations[i];
             if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
                 winCombination = combinations[i]
+                winner = squares[a];
                 break;
             }
         }
 
-        this.setState({winCombination})
+        this.setState({winCombination, winner})
     }
 
     jumpTo(step) {
@@ -96,7 +99,7 @@ export class Game extends React.PureComponent {
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
-        const winner = null;
+        const winner = this.state.winner;
         const sortingByDesc = this.state.sortDesc;
         const winCombination = this.state.winCombination;
 
@@ -118,10 +121,14 @@ export class Game extends React.PureComponent {
         });
 
         let status;
+
         if (winner) {
             status = 'Winner is ' + winner;
         } else {
-            status = 'Next step for ' + (this.state.xIsNext ? 'X' : 'O');
+            status = !current.squares.includes(null)
+                ? 'It`s a draw!'
+                : 'Next step for ' + (this.state.xIsNext ? 'X' : 'O');
+
         }
 
         return (

@@ -9,8 +9,6 @@ export class Board extends React.Component {
             squares,
         } = this.props;
 
-        console.log("winCombination", winCombination)
-
         return (
             <Square
                 key={i}
