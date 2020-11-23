@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import  { Game }  from './Components/Game.js'
+import Game from './Components/Game/Game.js'
 import './index.css';
 
 ReactDOM.render(

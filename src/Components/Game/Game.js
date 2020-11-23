@@ -1,8 +1,12 @@
 import React from "react";
-import css from "../index.module.css";
-import {Board} from "./Board";
+import css from "../../index.module.css";
+import {Board} from "../Board";
 
-export class Game extends React.PureComponent {
+// export const Game = (history) => {
+//
+// }
+
+export default class Game extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -45,6 +49,7 @@ export class Game extends React.PureComponent {
             stepNumber,
             history,
         } = this.state;
+
         const combinations = [
             [0, 1, 2],
             [3, 4, 5],
